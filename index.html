@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8fc">
+  <meta name="description" content="مارکت؛ بازار چندمنظوره برای خرید، فروش، تأمین عمده و پیدا کردن خدمات.">
+  <title>مارکت | بازار بزرگ فرصت‌ها</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="announcement"><span class="sparkle">✦</span> مارکت در حال شروع است — فرصت‌ها را زودتر پیدا کن <a href="#how">بیشتر بدانید ←</a></div>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="مارکت صفحه اصلی"><span class="brand-mark">م</span><span>مارکت<span class="brand-dot">.</span><small>بازار فرصت‌ها</small></span></a>
+    <nav class="desktop-nav" aria-label="ناوبری اصلی">
+      <a href="#categories">دسته‌بندی‌ها</a><a href="#listings">آگهی‌ها</a><a href="#how">چطور کار می‌کند؟</a>
+    </nav>
+    <div class="header-actions"><button class="btn btn-quiet" id="savedToggle">♡ ذخیره‌ها <span id="savedCount" class="count">0</span></button><button class="btn btn-primary" id="openListing">＋ ثبت آگهی</button></div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> یک بازار، هزاران امکان</div>
+        <h1>چیزی که دنبالش هستی،<br><span>از همین‌جا شروع می‌شود.</span></h1>
+        <p class="hero-lede">از خریدوفروش کالا تا سفارش عمده و پیدا کردن متخصص؛ آدم‌ها و فرصت‌ها را ساده‌تر به هم وصل می‌کنیم.</p>
+        <form class="search-bar" id="searchForm"><span class="search-icon">⌕</span><input id="searchInput" type="search" placeholder="چی لازم داری؟ مثلاً طراحی سایت، قهوه عمده..." aria-label="جست‌وجو در مارکت"><select id="categoryFilter" aria-label="دسته‌بندی"><option value="all">همه دسته‌ها</option><option value="goods">کالا</option><option value="wholesale">عمده‌فروشی</option><option value="digital">خدمات دیجیتال</option><option value="local">خدمات محلی</option><option value="business">تأمین کسب‌وکار</option></select><button class="btn btn-primary search-submit" type="submit">جست‌وجو</button></form>
+        <div class="hero-foot"><div class="avatar-stack"><span>س</span><span>م</span><span>آ</span><span>+</span></div><span>برای خرید، فروش و همکاری ساخته شده</span><span class="hero-separator">•</span><span class="live-dot"></span><span>نسخه آزمایشی</span></div>
+      </div>
+      <div class="hero-art" aria-label="تصویرسازی بازار چندمنظوره">
+        <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+        <div class="float-card float-card-top"><span class="float-icon mint">↗</span><div><b>فرصت تازه</b><small>هر روز یک شروع جدید</small></div></div>
+        <div class="market-illustration"><div class="sun-disc"></div><div class="shop-building"><div class="shop-roof"></div><div class="shop-awning"><i></i><i></i><i></i><i></i><i></i></div><div class="shop-window"><span>مارکت</span><small>بازار فرصت‌ها</small></div><div class="shop-door"></div></div><div class="plant plant-left"><i></i><i></i><i></i></div><div class="plant plant-right"><i></i><i></i><i></i></div><div class="ground"></div></div>
+        <div class="float-card float-card-bottom"><span class="float-icon peach">✳</span><div><b>از ایده تا معامله</b><small>با چند قدم ساده</small></div></div>
+        <div class="mini-tag tag-left">خرید هوشمند</div><div class="mini-tag tag-right">ارتباط مستقیم</div>
+      </div>
+      <div class="hero-wash"></div>
+    </section>
+    <section class="trust-strip" aria-label="مزایای مارکت"><div><span class="trust-icon">⌕</span><span><b>پیدا کردن سریع</b><small>جست‌وجو بین فرصت‌ها</small></span></div><div><span class="trust-icon">↔</span><span><b>ارتباط ساده</b><small>خریدار و فروشنده کنار هم</small></span></div><div><span class="trust-icon">▦</span><span><b>چندمنظوره</b><small>از کالا تا خدمات</small></span></div><div><span class="trust-icon">✦</span><span><b>شروع رایگان</b><small>بدون هزینه برای این نسخه</small></span></div></section>
+    <section class="section categories-section" id="categories">
+      <div class="section-heading"><div><span class="section-kicker">راهت را انتخاب کن</span><h2>دنبال چه چیزی هستی؟</h2><p>از یک دسته شروع کن؛ بقیه مسیر را با هم پیدا می‌کنیم.</p></div><a class="text-link" href="#listings">دیدن همه آگهی‌ها <span>←</span></a></div>
+      <div class="category-grid">
+        <button class="category-card cat-goods" data-category="goods"><span class="category-visual visual-goods"><span class="box-shape">▧</span><i class="spark spark-a">✦</i></span><span class="category-name">کالا و محصولات</span><small>خریدوفروش روزمره</small><span class="category-arrow">↙</span></button>
+        <button class="category-card cat-wholesale" data-category="wholesale"><span class="category-visual visual-wholesale"><span class="crate">▤</span><i class="spark spark-b">✦</i></span><span class="category-name">عمده‌فروشی</span><small>سفارش‌های تعداد بالا</small><span class="category-arrow">↙</span></button>
+        <button class="category-card cat-digital" data-category="digital"><span class="category-visual visual-digital"><span class="screen">⌘</span><i class="spark spark-c">✦</i></span><span class="category-name">خدمات دیجیتال</span><small>طراحی، برنامه‌نویسی و بیشتر</small><span class="category-arrow">↙</span></button>
+        <button class="category-card cat-local" data-category="local"><span class="category-visual visual-local"><span class="pin">⌖</span><i class="spark spark-d">✦</i></span><span class="category-name">خدمات محلی</span><small>متخصص نزدیک خودت</small><span class="category-arrow">↙</span></button>
+        <button class="category-card cat-business" data-category="business"><span class="category-visual visual-business"><span class="briefcase">▣</span><i class="spark spark-e">✦</i></span><span class="category-name">تأمین کسب‌وکار</span><small>مواد اولیه و همکاری B2B</small><span class="category-arrow">↙</span></button>
+      </div>
+    </section>
+    <section class="section listings-section" id="listings">
+      <div class="section-heading listing-heading"><div><span class="section-kicker">برای شروع، چند نمونه</span><h2 id="listingTitle">فرصت‌های منتخب</h2><p>این آگهی‌ها نمونه نمایشی‌اند؛ هنوز فروشنده واقعی یا معامله‌ای ثبت نشده است.</p></div><div class="listing-controls"><button class="filter-chip active" data-filter="all">همه</button><button class="filter-chip" data-filter="goods">کالا</button><button class="filter-chip" data-filter="digital">دیجیتال</button><button class="filter-chip" data-filter="wholesale">عمده</button></div></div>
+      <div class="listing-grid" id="listingGrid" aria-live="polite"></div>
+      <div class="empty-state" id="emptyState" hidden><span>⌕</span><h3>چیزی پیدا نشد</h3><p>کلمه دیگری را امتحان کن یا دسته‌بندی را تغییر بده.</p><button class="btn btn-outline" id="resetSearch">نمایش همه آگهی‌ها</button></div>
+      <div class="center-action"><button class="btn btn-outline btn-wide" id="showAll">نمایش همه نمونه‌ها <span>←</span></button></div>
+    </section>
+    <section class="request-banner" id="how"><div class="request-decoration deco-one">✳</div><div class="request-decoration deco-two">✦</div><div class="request-copy"><span class="section-kicker light-kicker">چیزی که می‌خواهی پیدا نکردی؟</span><h2>درخواستت را ثبت کن؛<br>بگذار فرصت‌ها پیدایت کنند.</h2><p>نیازت را بنویس و مشخص کن دنبال چه کالا یا خدمتی هستی. این نسخه درخواست را برای پیش‌نمایش داخل همین مرورگر نگه می‌دارد.</p><button class="btn btn-light" id="openRequest">＋ ثبت درخواست خرید یا خدمت</button></div><div class="request-art"><div class="paper paper-back"></div><div class="paper paper-front"><span class="paper-check">✓</span><b>درخواست تو</b><span class="paper-line long"></span><span class="paper-line"></span><span class="paper-line short"></span><div class="paper-stamp">MARKT</div></div><span class="request-star">✦</span></div></section>
+    <section class="section steps-section"><div class="section-heading"><div><span class="section-kicker">ساده و سرراست</span><h2>مارکت چطور کار می‌کند؟</h2><p>نسخه فعلی یک نمونه تعاملی برای امتحان ایده است.</p></div></div><div class="steps-grid"><article class="step-card"><span class="step-number">01</span><div class="step-icon">⌕</div><h3>جست‌وجو کن</h3><p>دسته‌بندی‌ها و آگهی‌های نمونه را ببین یا عبارت دلخواهت را جست‌وجو کن.</p></article><article class="step-card"><span class="step-number">02</span><div class="step-icon">＋</div><h3>آگهی یا درخواست بساز</h3><p>فرم آزمایشی را پر کن تا موردت در همین مرورگر نمایش داده شود.</p></article><article class="step-card"><span class="step-number">03</span><div class="step-icon">↗</div><h3>برای بازار واقعی آماده شو</h3><p>حساب کاربری، پیام‌رسانی، پرداخت و مدیریت معاملات به بک‌اند نیاز دارند و در مرحله بعد اضافه می‌شوند.</p></article></div></section>
+  </main>
+  <footer class="site-footer"><a class="brand footer-brand" href="#"><span class="brand-mark">م</span><span>مارکت<span class="brand-dot">.</span><small>بازار فرصت‌ها</small></span></a><p>یک بازار باز برای ایده‌های بزرگ.</p><span class="footer-note">نسخه آزمایشی · ساخته‌شده برای شروع</span></footer>
+  <dialog id="listingDialog" class="modal"><form id="listingForm" class="modal-form"><button type="button" class="modal-close" data-close aria-label="بستن">×</button><span class="section-kicker">فرصتت را به اشتراک بگذار</span><h2>ثبت آگهی جدید</h2><p class="modal-note">این فرم فقط یک پیش‌نمایش محلی می‌سازد و آگهی را آنلاین منتشر نمی‌کند.</p><label>عنوان آگهی<input name="title" required maxlength="70" placeholder="مثلاً طراحی فروشگاه اینترنتی"></label><div class="form-row"><label>دسته‌بندی<select name="category" required><option value="goods">کالا</option><option value="wholesale">عمده‌فروشی</option><option value="digital">خدمات دیجیتال</option><option value="local">خدمات محلی</option><option value="business">تأمین کسب‌وکار</option></select></label><label>قیمت یا توضیح قیمت<input name="price" maxlength="45" placeholder="مثلاً توافقی یا ۲ میلیون تومان"></label></div><label>شهر<input name="city" maxlength="40" placeholder="مثلاً تهران"></label><label>توضیح کوتاه<textarea name="description" rows="3" maxlength="220" placeholder="کمی درباره آگهی‌ات بنویس"></textarea></label><button class="btn btn-primary btn-submit" type="submit">ساخت پیش‌نمایش آگهی</button></form></dialog>
+  <dialog id="requestDialog" class="modal"><form id="requestForm" class="modal-form"><button type="button" class="modal-close" data-close aria-label="بستن">×</button><span class="section-kicker">نیازت را واضح بنویس</span><h2>ثبت درخواست</h2><p class="modal-note">درخواست فقط در این مرورگر ذخیره می‌شود؛ هنوز به فروشنده‌ای ارسال نمی‌شود.</p><label>چه چیزی لازم داری؟<input name="title" required maxlength="90" placeholder="مثلاً ۱۰۰ کیلو قهوه برای کافه"></label><label>دسته‌بندی<select name="category"><option value="goods">کالا</option><option value="wholesale">عمده‌فروشی</option><option value="digital">خدمات دیجیتال</option><option value="local">خدمات محلی</option><option value="business">تأمین کسب‌وکار</option></select></label><label>شهر یا محدوده<input name="city" maxlength="50" placeholder="کجا؟"></label><label>جزئیات بیشتر<textarea name="description" rows="3" maxlength="260" placeholder="تعداد، زمان یا ویژگی‌های موردنیاز"></textarea></label><button class="btn btn-primary btn-submit" type="submit">ذخیره درخواست آزمایشی</button></form></dialog>
+  <dialog id="detailDialog" class="modal"><div class="modal-form detail-modal"><button type="button" class="modal-close" data-close aria-label="بستن">×</button><div id="detailContent"></div></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

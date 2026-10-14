@@ -1,101 +1,38 @@
 (() => {
-  "use strict";
-  const $ = (selector, root = document) => root.querySelector(selector);
-  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
-  const sampleListings = [
-    {id:"s1",title:"دانه قهوه تازه‌برشت",category:"wholesale",categoryLabel:"عمده‌فروشی",price:"توافقی",unit:"سفارش عمده",city:"تهران",description:"مناسب کافه‌ها و فروشگاه‌ها؛ امکان هماهنگی برای حجم‌های مختلف.",emoji:"☕",color:"#e6d3c2",badge:"پیشنهاد ویژه"},
-    {id:"s2",title:"طراحی سایت فروشگاهی",category:"digital",categoryLabel:"خدمات دیجیتال",price:"از ۸ میلیون",unit:"پروژه‌ای",city:"آنلاین",description:"طراحی فروشگاه واکنش‌گرا با تمرکز بر تجربه خرید و سرعت.",emoji:"💻",color:"#d9d5ff",badge:"خدمت"},
-    {id:"s3",title:"محصولات دست‌ساز سفالی",category:"goods",categoryLabel:"کالا",price:"از ۳۵۰ هزار",unit:"هر محصول",city:"اصفهان",description:"ظروف دکوراتیو دست‌ساز برای خانه، هدیه و فروشگاه‌های خاص.",emoji:"🏺",color:"#f9d8c7",badge:"ساخت دست"},
-    {id:"s4",title:"تأمین جعبه و بسته‌بندی",category:"business",categoryLabel:"تأمین کسب‌وکار",price:"قیمت همکاری",unit:"سفارش سازمانی",city:"کرج",description:"راهکارهای بسته‌بندی برای کسب‌وکارهای کوچک و سفارش‌های پرتعداد.",emoji:"📦",color:"#d1f0e4",badge:"B2B"},
-    {id:"s5",title:"عکاسی محصول برای فروشگاه",category:"digital",categoryLabel:"خدمات دیجیتال",price:"از ۱٫۲ میلیون",unit:"هر جلسه",city:"تهران",description:"تصاویر تمیز و آماده استفاده در فروشگاه آنلاین و شبکه‌های اجتماعی.",emoji:"📸",color:"#ffe2c9",badge:"خدمت"},
-    {id:"s6",title:"لوازم اداری برای شرکت‌ها",category:"wholesale",categoryLabel:"عمده‌فروشی",price:"استعلام قیمت",unit:"خرید تعداد بالا",city:"مشهد",description:"مجموعه‌ای از اقلام پرمصرف اداری برای سفارش‌های سازمانی.",emoji:"📚",color:"#dce9ff",badge:"عمده"},
-    {id:"s7",title:"تعمیر و نصب تجهیزات خانه",category:"local",categoryLabel:"خدمات محلی",price:"پس از بررسی",unit:"بسته به خدمت",city:"شیراز",description:"هماهنگی برای خدمات نصب و تعمیرات سبک خانگی.",emoji:"🛠️",color:"#ffedbd",badge:"محلی"},
-    {id:"s8",title:"تولید محصولات چرمی",category:"goods",categoryLabel:"کالا",price:"از ۷۰۰ هزار",unit:"هر محصول",city:"تبریز",description:"محصولات چرمی برای استفاده روزمره و سفارش هدیه.",emoji:"👜",color:"#ead8c9",badge:"محصول"}
-  ];
-  const categoryLabels = {goods:"کالا",wholesale:"عمده‌فروشی",digital:"خدمات دیجیتال",local:"خدمات محلی",business:"تأمین کسب‌وکار"};
-  const categoryEmojis = {goods:"🛍️",wholesale:"📦",digital:"💻",local:"🧰",business:"🏢"};
-  let listings = [...sampleListings];
-  let activeFilter = "all";
-  let searchTerm = "";
-  let saved = readStore("markt-saved", []);
-  let showSavedOnly = false;
-  let toastTimer;
-  function readStore(key, fallback) { try { const value = JSON.parse(localStorage.getItem(key)); return value ?? fallback; } catch { return fallback; } }
-  function writeStore(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch {} }
-  function escapeHTML(value) { return String(value ?? "").replace(/[&<>"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char])); }
-  function showToast(message) { const toast = $("#toast"); toast.textContent = message; toast.classList.add("show"); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove("show"), 2800); }
-  function updateSavedCount() { $("#savedCount").textContent = saved.length; }
-  function matchesListing(item) {
-    const matchesCategory = activeFilter === "all" || item.category === activeFilter;
-    const haystack = [item.title,item.categoryLabel,item.price,item.city,item.description].join(" ").toLocaleLowerCase("fa");
-    const matchesSearch = !searchTerm || haystack.includes(searchTerm.toLocaleLowerCase("fa"));
-    const matchesSaved = !showSavedOnly || saved.includes(item.id);
-    return matchesCategory && matchesSearch && matchesSaved;
-  }
-  function renderListings() {
-    const filtered = listings.filter(matchesListing);
-    $("#listingGrid").innerHTML = filtered.map(item => `
-      <article class="listing-card">
-        <div class="listing-image" style="background:${escapeHTML(item.color)}">
-          <span class="listing-badge">${escapeHTML(item.badge || item.categoryLabel)}</span>
-          <button class="save-button ${saved.includes(item.id) ? "saved" : ""}" data-save="${escapeHTML(item.id)}" aria-label="${saved.includes(item.id) ? "حذف از ذخیره‌ها" : "ذخیره آگهی"}">${saved.includes(item.id) ? "♥" : "♡"}</button>
-          <span class="listing-emoji" aria-hidden="true">${escapeHTML(item.emoji || categoryEmojis[item.category] || "✦")}</span>
-        </div>
-        <div class="listing-content"><div class="listing-meta"><span>${escapeHTML(item.categoryLabel || categoryLabels[item.category])}</span><span>⌖ ${escapeHTML(item.city || "آنلاین")}</span></div>
-          <h3>${escapeHTML(item.title)}</h3><p class="listing-description">${escapeHTML(item.description || "برای دریافت اطلاعات بیشتر، جزئیات این آگهی را ببینید.")}</p>
-          <div class="listing-bottom"><span class="listing-price">${escapeHTML(item.price || "توافقی")}<small>${escapeHTML(item.unit || "قیمت نمایشی")}</small></span><button class="listing-action" data-detail="${escapeHTML(item.id)}" aria-label="جزئیات آگهی">←</button></div>
-        </div>
-      </article>`).join("");
-    $("#emptyState").hidden = filtered.length !== 0;
-    $("#listingGrid").hidden = filtered.length === 0;
-    $("#listingTitle").textContent = showSavedOnly ? "آگهی‌های ذخیره‌شده" : searchTerm ? "نتایج جست‌وجو" : "فرصت‌های منتخب";
-    $("#showAll").textContent = showSavedOnly ? "بازگشت به همه آگهی‌ها ←" : "نمایش همه نمونه‌ها ←";
-    $$(".filter-chip").forEach(button => button.classList.toggle("active", button.dataset.filter === activeFilter));
-    updateSavedCount();
-  }
-  function openDialog(id) { const dialog = $(id); if (dialog && !dialog.open) dialog.showModal(); }
-  function closeDialog(button) { const dialog = button.closest("dialog"); if (dialog) dialog.close(); }
-  function addListing(form, isRequest = false) {
-    const data = new FormData(form);
-    const category = String(data.get("category") || "goods");
-    const title = String(data.get("title") || "").trim();
-    if (!title) { showToast("لطفاً عنوان را وارد کن."); return; }
-    const id = "local-" + Date.now();
-    const entry = {id,title,category,categoryLabel:categoryLabels[category] || "کالا",price:isRequest ? "درخواست خرید" : (String(data.get("price") || "").trim() || "توافقی"),unit:isRequest ? "منتظر تأمین‌کننده" : "آگهی آزمایشی",city:String(data.get("city") || "").trim() || "ثبت نشده",description:String(data.get("description") || "").trim() || (isRequest ? "درخواست آزمایشی ثبت‌شده در مرورگر." : "آگهی آزمایشی ثبت‌شده در مرورگر."),emoji:isRequest ? "📝" : (categoryEmojis[category] || "✨"),color:({goods:"#f5d9c8",wholesale:"#d1f0e4",digital:"#d9d5ff",local:"#dce9ff",business:"#ffedbd"})[category] || "#eeeaff",badge:isRequest ? "درخواست آزمایشی" : "آگهی شما"};
-    listings = [entry,...listings];
-    form.reset();
-    form.closest("dialog").close();
-    showSavedOnly = false; searchTerm = ""; activeFilter = "all"; $("#searchInput").value = ""; $("#categoryFilter").value = "all";
-    renderListings();
-    $("#listings").scrollIntoView({behavior:"smooth",block:"start"});
-    showToast(isRequest ? "درخواست آزمایشی ذخیره شد؛ فقط در همین مرورگر." : "آگهی آزمایشی ساخته شد؛ هنوز آنلاین منتشر نشده.");
-  }
-  function showDetail(id) {
-    const item = listings.find(entry => entry.id === id);
-    if (!item) return;
-    $("#detailContent").innerHTML = `<span class="section-kicker">${escapeHTML(item.categoryLabel || categoryLabels[item.category])}</span><div class="detail-symbol">${escapeHTML(item.emoji || categoryEmojis[item.category])}</div><h2>${escapeHTML(item.title)}</h2><p>⌖ ${escapeHTML(item.city || "آنلاین")} · ${escapeHTML(item.price || "توافقی")}</p><p>${escapeHTML(item.description || "توضیحی ثبت نشده است.")}</p><p class="modal-note">این مورد بخشی از نسخه آزمایشی مارکت است. ارتباط با فروشنده و انجام معامله هنوز فعال نیست.</p><button class="btn btn-primary btn-submit" data-detail-save="${escapeHTML(item.id)}">${saved.includes(item.id) ? "♥ حذف از ذخیره‌ها" : "♡ ذخیره این آگهی"}</button>`;
-    openDialog("#detailDialog");
-  }
-  $("#searchForm").addEventListener("submit", event => { event.preventDefault(); searchTerm = $("#searchInput").value.trim(); activeFilter = $("#categoryFilter").value; showSavedOnly = false; renderListings(); $("#listings").scrollIntoView({behavior:"smooth",block:"start"}); });
-  $("#searchInput").addEventListener("input", () => { if ($("#searchInput").value.trim() === "") { searchTerm = ""; renderListings(); } });
-  $("#categoryFilter").addEventListener("change", () => { activeFilter = $("#categoryFilter").value; showSavedOnly = false; renderListings(); });
-  $$(".category-card").forEach(button => button.addEventListener("click", () => { activeFilter = button.dataset.category; showSavedOnly = false; $("#categoryFilter").value = activeFilter; searchTerm = ""; $("#searchInput").value = ""; renderListings(); $("#listings").scrollIntoView({behavior:"smooth",block:"start"}); }));
-  $$(".filter-chip").forEach(button => button.addEventListener("click", () => { activeFilter = button.dataset.filter; showSavedOnly = false; renderListings(); }));
-  $("#listingGrid").addEventListener("click", event => {
-    const saveButton = event.target.closest("[data-save]");
-    const detailButton = event.target.closest("[data-detail]");
-    if (saveButton) { const id = saveButton.dataset.save; saved = saved.includes(id) ? saved.filter(value => value !== id) : [...saved,id]; writeStore("markt-saved",saved); renderListings(); showToast(saved.includes(id) ? "به ذخیره‌ها اضافه شد." : "از ذخیره‌ها حذف شد."); }
-    else if (detailButton) showDetail(detailButton.dataset.detail);
-  });
-  $("#detailContent").addEventListener("click", event => { const button = event.target.closest("[data-detail-save]"); if (!button) return; const id = button.dataset.detailSave; saved = saved.includes(id) ? saved.filter(value => value !== id) : [...saved,id]; writeStore("markt-saved",saved); updateSavedCount(); showDetail(id); showToast(saved.includes(id) ? "به ذخیره‌ها اضافه شد." : "از ذخیره‌ها حذف شد."); });
-  $("#savedToggle").addEventListener("click", () => { showSavedOnly = !showSavedOnly; activeFilter = "all"; searchTerm = ""; $("#searchInput").value = ""; $("#categoryFilter").value = "all"; renderListings(); $("#listings").scrollIntoView({behavior:"smooth",block:"start"}); });
-  $("#showAll").addEventListener("click", () => { if (showSavedOnly) { showSavedOnly = false; activeFilter = "all"; searchTerm = ""; renderListings(); } else { activeFilter = "all"; searchTerm = ""; showSavedOnly = false; $("#searchInput").value = ""; $("#categoryFilter").value = "all"; renderListings(); showToast("همه نمونه‌های موجود نمایش داده شدند."); } });
-  $("#resetSearch").addEventListener("click", () => { searchTerm = ""; activeFilter = "all"; showSavedOnly = false; $("#searchInput").value = ""; $("#categoryFilter").value = "all"; renderListings(); });
-  $("#openListing").addEventListener("click", () => openDialog("#listingDialog"));
-  $("#openRequest").addEventListener("click", () => openDialog("#requestDialog"));
-  $("#listingForm").addEventListener("submit", event => { event.preventDefault(); addListing(event.currentTarget,false); });
-  $("#requestForm").addEventListener("submit", event => { event.preventDefault(); addListing(event.currentTarget,true); });
-  $$("[data-close]").forEach(button => button.addEventListener("click", () => closeDialog(button)));
-  $$("dialog").forEach(dialog => dialog.addEventListener("click", event => { if (event.target === dialog) dialog.close(); }));
-  renderListings();
+"use strict";
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const labels={mobile:"موبایل",pc:"کامپیوتر",console:"کنسول"};
+const samples=[
+{id:"g1",title:"اکانت رقابتی با اسکین‌های ویژه",game:"PUBG Mobile",category:"mobile",price:"۲٬۴۰۰٬۰۰۰ تومان",rank:"سطح ۷۰ · آیتم‌های ویژه",city:"نمونه",description:"نمونه نمایشی برای آزمایش صفحه آگهی؛ مالکیت و امکان انتقال تأیید نشده است.",emoji:"🎯",glow:"#a28bff",badge:"نمونه"},
+{id:"g2",title:"اکانت با رتبه بالا و آیتم‌های کمیاب",game:"Free Fire",category:"mobile",price:"۱٬۲۰۰٬۰۰۰ تومان",rank:"رتبه بالا · چند اسکین",city:"نمونه",description:"این آگهی ساختگی است و فروشنده واقعی ندارد. قبل از معامله قوانین بازی را بررسی کن.",emoji:"🔥",glow:"#ff9cba",badge:"نمونه"},
+{id:"g3",title:"اکانت پیشرفت‌کرده با آیتم‌های بازشده",game:"Call of Duty",category:"pc",price:"۳٬۸۰۰٬۰۰۰ تومان",rank:"لول بالا · آیتم‌های مختلف",city:"نمونه",description:"نمونه نمایشی؛ اطلاعات ورود، ایمیل یا کد بازیابی را در آگهی عمومی قرار نده.",emoji:"⚔️",glow:"#84dfc7",badge:"نمونه"},
+{id:"g4",title:"اکانت ماجراجویی با شخصیت‌های بازشده",game:"Genshin Impact",category:"pc",price:"۲٬۹۰۰٬۰۰۰ تومان",rank:"پیشرفت داستانی · چند شخصیت",city:"نمونه",description:"صرفاً جهت نمایش رابط کاربری است؛ خریدوفروش ممکن است طبق قوانین بازی ممنوع باشد.",emoji:"✨",glow:"#f0c17c",badge:"نمونه"},
+{id:"g5",title:"اکانت ورزشی با تیم ساخته‌شده",game:"EA SPORTS FC",category:"console",price:"۱٬۷۰۰٬۰۰۰ تومان",rank:"تیم آماده · آیتم‌های متنوع",city:"نمونه",description:"هیچ معامله واقعی انجام نمی‌شود. سازگاری پلتفرم و قوانین انتقال را بررسی کن.",emoji:"🏆",glow:"#82a9ff",badge:"نمونه"},
+{id:"g6",title:"اکانت چندنفره با پیشرفت قابل‌توجه",game:"Minecraft",category:"pc",price:"۸۵۰٬۰۰۰ تومان",rank:"پیشرفت بالا · پروفایل شخصی",city:"نمونه",description:"آگهی نمونه است و تأیید مالکیت یا مجازبودن انتقال در آن انجام نشده است.",emoji:"🧱",glow:"#8de4b4",badge:"نمونه"}
+];
+let listings=[...samples], filter="all", term="", saved=load("gmarkt-saved",[]), savedOnly=false, toastTimer;
+function load(k,f){try{return JSON.parse(localStorage.getItem(k))??f}catch{return f}}
+function store(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}}
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function toast(s){const el=$("#toast");el.textContent=s;el.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove("show"),2600)}
+function render(){const shown=listings.filter(x=>(filter==="all"||x.category===filter)&&(!term||[x.title,x.game,x.rank,x.price,x.description].join(" ").toLocaleLowerCase("fa").includes(term.toLocaleLowerCase("fa")))&&(!savedOnly||saved.includes(x.id)));
+$("#listingGrid").innerHTML=shown.map(x=>`<article class="listing-card"><div class="listing-art" style="--glow:${esc(x.glow||"#8b78ff")}"><span class="badge">${esc(x.badge||"آگهی آزمایشی")}</span><button class="save ${saved.includes(x.id)?"saved":""}" data-save="${esc(x.id)}" aria-label="ذخیره آگهی">${saved.includes(x.id)?"♥":"♡"}</button><span class="emoji">${esc(x.emoji||"🎮")}</span></div><div class="listing-content"><div class="meta"><span>${esc(x.game)}</span><span>${esc(labels[x.category]||"بازی")}</span></div><h3>${esc(x.title)}</h3><p class="description">${esc(x.description)}</p><span class="rank">${esc(x.rank||"مشخصات ثبت نشده")}</span><div class="listing-bottom"><span class="price">${esc(x.price)}<small>قیمت اعلامی · تأیید نشده</small></span><button class="detail-btn" data-detail="${esc(x.id)}" aria-label="جزئیات آگهی">←</button></div></div></article>`).join("");
+$("#emptyState").hidden=shown.length>0;$("#listingGrid").hidden=shown.length===0;$("#listingTitle").textContent=savedOnly?"آگهی‌های ذخیره‌شده":term?"نتایج جست‌وجو":"آگهی‌های نمونه";$("#savedCount").textContent=saved.length;$$(".filter").forEach(b=>b.classList.toggle("active",b.dataset.filter===filter));}
+function open(id){const d=$(id);if(d&&!d.open)d.showModal()}
+function close(b){b.closest("dialog")?.close()}
+function detail(id){const x=listings.find(v=>v.id===id);if(!x)return;$("#detailContent").innerHTML=`<div class="detail-content"><span class="kicker">${esc(labels[x.category]||"بازی")} · ${esc(x.game)}</span><div class="detail-icon">${esc(x.emoji||"🎮")}</div><h2>${esc(x.title)}</h2><p>${esc(x.price)} · ${esc(x.rank||"مشخصات ثبت نشده")}</p><p>${esc(x.description)}</p><div class="warning">⚠️ این آگهی نمایشی است. سایت هنوز فروشنده را تأیید نمی‌کند، پول نگه نمی‌دارد و معامله واقعی را پشتیبانی نمی‌کند. پیش از هر انتقال، قوانین رسمی بازی را بخوان.</div><button class="btn btn-primary submit" data-detail-save="${esc(x.id)}">${saved.includes(x.id)?"♥ حذف از ذخیره‌ها":"♡ ذخیره آگهی"}</button></div>`;open("#detailDialog")}
+function reset(){filter="all";term="";savedOnly=false;$("#searchInput").value="";$("#categoryFilter").value="all";render()}
+$("#searchForm").addEventListener("submit",e=>{e.preventDefault();term=$("#searchInput").value.trim();filter=$("#categoryFilter").value;savedOnly=false;render();$("#market").scrollIntoView({behavior:"smooth"})});
+$("#searchInput").addEventListener("input",()=>{if(!$("#searchInput").value.trim()){term="";render()}});
+$("#categoryFilter").addEventListener("change",()=>{filter=$("#categoryFilter").value;savedOnly=false;render()});
+$$(".filter").forEach(b=>b.addEventListener("click",()=>{filter=b.dataset.filter;$("#categoryFilter").value=filter;savedOnly=false;render()}));
+$("#listingGrid").addEventListener("click",e=>{const s=e.target.closest("[data-save]"),d=e.target.closest("[data-detail]");if(s){const id=s.dataset.save;saved=saved.includes(id)?saved.filter(v=>v!==id):[...saved,id];store("gmarkt-saved",saved);render();toast(saved.includes(id)?"به ذخیره‌ها اضافه شد.":"از ذخیره‌ها حذف شد.")}else if(d)detail(d.dataset.detail)});
+$("#detailContent").addEventListener("click",e=>{const b=e.target.closest("[data-detail-save]");if(!b)return;const id=b.dataset.detailSave;saved=saved.includes(id)?saved.filter(v=>v!==id):[...saved,id];store("gmarkt-saved",saved);detail(id);render();toast(saved.includes(id)?"به ذخیره‌ها اضافه شد.":"از ذخیره‌ها حذف شد.")});
+$("#savedToggle").addEventListener("click",()=>{savedOnly=!savedOnly;filter="all";term="";$("#searchInput").value="";$("#categoryFilter").value="all";render();$("#market").scrollIntoView({behavior:"smooth"})});
+$("#resetSearch").addEventListener("click",reset);
+$("#openListing").addEventListener("click",()=>open("#listingDialog"));
+$("#listingForm").addEventListener("submit",e=>{e.preventDefault();const d=new FormData(e.currentTarget),title=String(d.get("title")||"").trim(),game=String(d.get("game")||"").trim();if(!title||!game)return;const cat=String(d.get("category")||"mobile");listings.unshift({id:"local-"+Date.now(),title,game,category:cat,price:String(d.get("price")||"قیمت توافقی").trim(),rank:String(d.get("rank")||"مشخصات ثبت نشده").trim(),description:String(d.get("description")||"آگهی آزمایشی ثبت‌شده در این مرورگر.").trim(),emoji:({mobile:"📱",pc:"🖥️",console:"🎮"})[cat],glow:"#8b78ff",badge:"آگهی آزمایشی"});e.currentTarget.reset();$("#listingDialog").close();reset();$("#market").scrollIntoView({behavior:"smooth"});toast("پیش‌نمایش ساخته شد؛ آگهی آنلاین منتشر نشده است.")});
+$$("[data-close]").forEach(b=>b.addEventListener("click",()=>close(b)));
+$$("dialog").forEach(d=>d.addEventListener("click",e=>{if(e.target===d)d.close()}));
+render();
 })();

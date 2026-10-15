@@ -2,79 +2,294 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#f1f1ee">
-<meta name="description" content="Driftbar — The calm bar for macOS.">
-<title>Driftbar — Meadow Footer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#11110f">
+<meta name="description" content="LTX — The world model. A cinematic, interactive fashion film.">
+<title>LTX — The world model</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--paper:#f1f1ee;--ink:#0c0c0c;--body:#6f6f6c;--muted:#9c9c98;--wordmark:#efefeb;--mist:#e2e3f1;--font:"Inter",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
-*,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-a{color:inherit;text-decoration:none}
-ul{margin:0;padding:0;list-style:none}
-.footer{--u:min(100vw / 1440,100vh / 672);--u:min(100vw / 1440,100svh / 672);position:relative;height:100vh;height:100svh;background:var(--paper);overflow:hidden;isolation:isolate}
-.footer__stage{position:absolute;inset:0;z-index:0}
-.footer__video{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 100%;transform:translateY(9%)}
-.footer__stage::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,var(--paper) 0%,rgb(241 241 238 / .96) 26%,rgb(241 241 238 / .72) 44%,rgb(241 241 238 / 0) 70%)}
-.footer__wordmark{position:absolute;left:50%;bottom:calc(-2 * var(--u));transform:translateX(-50%);z-index:1;margin:0;font-size:calc(390 * var(--u));font-weight:600;line-height:.74;letter-spacing:-.045em;white-space:nowrap;pointer-events:none;user-select:none;color:rgb(232 234 250 / .4);background:linear-gradient(to bottom,rgb(255 255 255 / .78),rgb(214 218 246 / .36) 48%,rgb(255 255 255 / .62));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 calc(-1 * var(--u)) 0 rgb(255 255 255 / .55)) drop-shadow(0 0 calc(18 * var(--u)) rgb(190 200 255 / .45))}
-.footer__fog{position:absolute;inset:auto 0 0;z-index:2;height:17%;pointer-events:none;background:linear-gradient(to top,var(--mist) 0%,rgb(226 227 241 / .6) 30%,rgb(226 227 241 / 0) 100%)}
-.footer__content{position:relative;z-index:3;display:grid;grid-template-columns:calc(440 * var(--u)) calc(240 * var(--u)) calc(240 * var(--u)) 1fr;align-items:start;width:calc(1440 * var(--u));margin:0 auto;padding:calc(86 * var(--u)) calc(100 * var(--u)) 0 calc(160 * var(--u))}
-.brand__logo{display:inline-flex;align-items:center;gap:calc(10 * var(--u));font-size:calc(17 * var(--u));font-weight:500;letter-spacing:-.02em}
-.brand__mark{position:relative;display:inline-block;width:calc(30 * var(--u));height:calc(30 * var(--u));border-radius:calc(8 * var(--u));background:linear-gradient(to bottom,#2b2b2b,#0a0a0a 55%);box-shadow:0 calc(1 * var(--u)) calc(2 * var(--u)) rgb(0 0 0 / .25)}
-.brand__mark::after{content:"";position:absolute;left:13%;right:13%;bottom:14%;height:19%;border-radius:999px;background:#fff}
-.brand__title{margin:calc(19 * var(--u)) 0 0;font-size:calc(20 * var(--u));font-weight:600;line-height:1.2;letter-spacing:-.045em}
-.brand__text{max-width:calc(412 * var(--u));margin:calc(18 * var(--u)) 0 0;color:var(--body);font-size:calc(13.7 * var(--u));line-height:1.43;letter-spacing:-.012em}
-.brand__cta{display:inline-flex;align-items:center;gap:calc(6 * var(--u));height:calc(32.5 * var(--u));margin-top:calc(20 * var(--u));padding:0 calc(16 * var(--u)) 0 calc(15 * var(--u));border-radius:calc(7 * var(--u));background:#000;color:#fff;font-size:calc(11.8 * var(--u));font-weight:500;letter-spacing:-.01em;transition:background .2s,transform .2s}
-.brand__cta:hover{background:#262626;transform:translateY(-1px)}
-.brand__cta svg{width:calc(13 * var(--u));height:calc(13 * var(--u));margin-top:calc(-1.5 * var(--u));flex:none}
-.brand__copy{margin:calc(23 * var(--u)) 0 0;color:var(--muted);font-size:calc(12.2 * var(--u));letter-spacing:.01em}
-.brand__by{display:flex;align-items:center;gap:calc(5 * var(--u));margin-top:calc(21 * var(--u));font-size:calc(11.8 * var(--u));font-weight:500;letter-spacing:-.01em}
-.brand__heart{font-size:.95em}
-.brand__author{display:inline-flex;align-items:center;gap:calc(6 * var(--u));margin-left:calc(5 * var(--u))}
-.brand__avatar{display:inline-block;width:calc(23 * var(--u));height:calc(23 * var(--u));overflow:hidden;border-radius:50%;background:#e3e3e0}
-.brand__avatar svg{display:block;width:100%;height:100%}
-.brand__status{display:flex;flex-wrap:wrap;gap:calc(8 * var(--u));margin-top:calc(16 * var(--u))}
-.chip{display:inline-flex;align-items:center;gap:calc(6 * var(--u));height:calc(25 * var(--u));padding:0 calc(10 * var(--u));border:1px solid rgb(12 12 12 / .12);border-radius:999px;background:rgb(255 255 255 / .55);font-size:calc(10.8 * var(--u));font-weight:500;letter-spacing:-.01em;white-space:nowrap}
-.chip svg{width:calc(11 * var(--u));height:calc(11 * var(--u));fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
-.chip__dot{width:calc(6 * var(--u));height:calc(6 * var(--u));border-radius:50%;background:#2fb36a;box-shadow:0 0 0 calc(2.5 * var(--u)) rgb(47 179 106 / .18);margin:0 calc(2 * var(--u))}
-.col__title{margin:0;font-size:calc(16 * var(--u));font-weight:600;line-height:1;letter-spacing:-.045em}
-.col__list{display:grid;gap:calc(20.5 * var(--u));margin-top:calc(24 * var(--u));font-size:calc(13.7 * var(--u));line-height:1.24;letter-spacing:.022em;color:#161616}
-.col--menu .col__list{gap:calc(15 * var(--u));margin-top:calc(21 * var(--u));font-weight:500;letter-spacing:-.025em;color:var(--ink)}
-.col__list a{transition:opacity .2s}
-.col__list a:hover{opacity:.55}
-@media (min-width:768px) and (max-width:1023px){.footer{--u:min(100vw / 1040,100svh / 672)}.footer__content{grid-template-columns:calc(400 * var(--u)) calc(190 * var(--u)) calc(210 * var(--u)) 1fr;width:calc(1040 * var(--u));padding:calc(64 * var(--u)) calc(40 * var(--u)) 0}.brand__text{max-width:calc(350 * var(--u))}.footer__wordmark{font-size:calc(286 * var(--u));bottom:calc(10 * var(--u))}}
-@media (max-width:767px){.footer{--u:1px;display:flex;flex-direction:column;height:auto;min-height:100svh;overflow:hidden}.footer__video{object-position:50% 100%;transform:translateY(0)}.footer__stage::after{background:linear-gradient(to bottom,var(--paper) 0%,rgb(241 241 238 / .95) 50%,rgb(241 241 238 / .8) 68%,rgb(241 241 238 / 0) 90%)}.footer__content{grid-template-columns:auto auto auto;justify-content:space-between;column-gap:12px;row-gap:36px;width:100%;padding:40px 20px 0;margin-bottom:max(34vw,150px)}.brand{grid-column:1/-1}.brand__logo{gap:10px;font-size:17px}.brand__mark{width:30px;height:30px;border-radius:8px}.brand__title{margin-top:19px;font-size:21px}.brand__text{max-width:34em;margin-top:18px;font-size:14px}.brand__cta{height:38px;margin-top:20px;padding:0 18px 0 16px;border-radius:8px;font-size:13px;gap:6px}.brand__cta svg{width:14px;height:14px;margin-top:-1.5px}.brand__copy{margin-top:23px;font-size:12.5px}.brand__by{gap:5px;margin-top:21px;font-size:12.5px}.brand__author{gap:6px;margin-left:5px}.brand__avatar{width:23px;height:23px}.brand__status{gap:8px;margin-top:16px}.chip{height:28px;padding:0 10px;font-size:12px;gap:6px}.chip svg{width:11px;height:11px}.chip__dot{width:6px;height:6px}.col__title{font-size:15px}.col__list,.col--menu .col__list{gap:14px;margin-top:20px;font-size:13px;letter-spacing:0;white-space:nowrap}.footer__wordmark{bottom:5vw;font-size:27vw}.footer__fog{height:7%}}
-@media (max-width:359px){.footer__content{grid-template-columns:1fr 1fr;column-gap:18px}.brand{grid-column:1/-1}.col--team{grid-column:1/-1}.col--team .col__list{grid-template-columns:1fr 1fr}}
-@media (prefers-reduced-motion:reduce){.brand__cta,.col__list a{transition:none}}
+:root{color-scheme:dark;--bg:#11110f;--ink:#f7f4ed;--muted:rgba(247,244,237,.66);--line:rgba(255,255,255,.2);--glass:rgba(24,24,22,.38);--ease:cubic-bezier(.22,.7,.2,1);--beat-x:50%;--beat-w:0%;--font:"Manrope",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit}
+button:focus-visible{outline:2px solid #f7f4ed;outline-offset:4px}
+.scene{position:relative;isolation:isolate;width:100%;height:100svh;min-height:480px;overflow:hidden;background:#25231f}
+.media{position:absolute;inset:0;z-index:-3;background:radial-gradient(ellipse at 55% 40%,#7d6a59 0,#36312b 42%,#151514 100%)}
+.media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%;opacity:0;transition:opacity 900ms var(--ease);background:#171715}
+.media video.active{opacity:1}
+.shade{position:absolute;inset:0;z-index:-2;pointer-events:none;background:linear-gradient(180deg,rgba(10,10,9,.47) 0%,transparent 23%,transparent 52%,rgba(8,8,7,.16) 70%,rgba(8,8,7,.76) 100%),linear-gradient(90deg,rgba(8,8,7,.24),transparent 55%,rgba(8,8,7,.1))}
+.grain{position:absolute;inset:-50%;z-index:2;pointer-events:none;opacity:.08;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");transform:translateZ(0)}
+.topbar{position:absolute;z-index:5;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:clamp(22px,4vw,48px) clamp(22px,5vw,68px)}
+.brand{font-size:clamp(21px,2.2vw,29px);font-weight:800;letter-spacing:-.095em;line-height:1}
+.brand sup{font-size:8px;letter-spacing:0;vertical-align:top;margin-left:4px}
+.topnote{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.78)}
+.edition{display:flex;align-items:center;gap:9px;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.76)}
+.pulse{width:6px;height:6px;border-radius:50%;background:#d6e8be;box-shadow:0 0 12px #d6e8be}
+.hero{position:absolute;z-index:3;left:clamp(22px,8vw,124px);top:50%;transform:translateY(-52%);max-width:min(730px,83vw);pointer-events:none}
+.eyebrow{display:flex;align-items:center;gap:12px;font-size:10px;font-weight:700;letter-spacing:.23em;text-transform:uppercase;color:rgba(255,255,255,.78);margin-bottom:23px}
+.eyebrow:before{content:"";display:block;width:28px;height:1px;background:currentColor}
+h1{font-size:clamp(52px,10.3vw,148px);font-weight:500;line-height:.83;letter-spacing:-.09em;margin:0 0 26px;max-width:8ch;text-wrap:balance}
+h1 span{display:block;font-weight:800;font-style:italic;letter-spacing:-.105em}
+.description{max-width:335px;font-size:clamp(12px,1.1vw,14px);line-height:1.8;color:rgba(255,255,255,.75);margin:0}
+.side-index{position:absolute;z-index:4;right:clamp(22px,5vw,68px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.side-index button{display:flex;align-items:center;gap:11px;border:0;background:none;padding:4px 0;cursor:pointer;color:rgba(255,255,255,.48);font-size:10px;letter-spacing:.13em;transition:color .25s}
+.side-index button:after{content:"";width:19px;height:1px;background:currentColor;transition:width .3s var(--ease)}
+.side-index button[aria-current="step"]{color:#fff}
+.side-index button[aria-current="step"]:after{width:38px;background:#fff}
+.bottom{position:absolute;z-index:5;left:clamp(22px,5vw,68px);right:clamp(22px,5vw,68px);bottom:clamp(20px,4vh,42px);display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:18px}
+.caption{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.7);line-height:1.8}
+.caption strong{display:block;font-weight:600;letter-spacing:.08em;color:#fff}
+.controller{justify-self:center;display:flex;align-items:center;gap:14px;padding:8px 10px 8px 8px;border:1px solid rgba(255,255,255,.28);border-radius:999px;background:var(--glass);backdrop-filter:blur(22px) saturate(125%);-webkit-backdrop-filter:blur(22px) saturate(125%);box-shadow:0 10px 44px rgba(0,0,0,.16)}
+.play{width:44px;height:44px;display:grid;place-items:center;border:0;border-radius:50%;background:#f4f1e9;color:#181815;cursor:pointer;transition:transform .25s var(--ease),background .25s}
+.play:hover{transform:scale(1.06);background:#fff}
+.play svg{width:15px;height:15px;fill:currentColor}
+.track{display:flex;align-items:center;gap:7px;min-width:clamp(104px,16vw,205px)}
+.track button{height:26px;min-width:27px;padding:0 7px;border:0;border-radius:20px;background:transparent;color:rgba(255,255,255,.58);font-size:10px;cursor:pointer;transition:background .2s,color .2s}
+.track button[aria-pressed="true"]{background:rgba(255,255,255,.16);color:#fff}
+.track button:hover{color:#fff}
+.reset{display:grid;place-items:center;width:34px;height:34px;border:1px solid rgba(255,255,255,.22);border-radius:50%;background:transparent;cursor:pointer;color:rgba(255,255,255,.85);transition:transform .3s var(--ease),background .2s}
+.reset:hover{transform:rotate(-45deg);background:rgba(255,255,255,.1)}
+.reset svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.counter{justify-self:end;display:flex;align-items:center;gap:10px;font-variant-numeric:tabular-nums;font-size:11px;letter-spacing:.12em;color:rgba(255,255,255,.8)}
+.counter .current{font-size:16px;color:#fff}
+.counter .dash{height:1px;width:28px;background:rgba(255,255,255,.48)}
+.beat{position:absolute;z-index:6;left:var(--beat-x);bottom:0;width:var(--beat-w);height:2px;background:#f8f5ec;transform:translateX(-50%);transition:width .45s var(--ease),left .45s var(--ease)}
+.status{position:absolute;z-index:7;left:50%;top:18%;transform:translate(-50%,-8px);opacity:0;pointer-events:none;padding:9px 13px;border:1px solid rgba(255,255,255,.22);border-radius:30px;background:rgba(15,15,14,.48);backdrop-filter:blur(12px);font-size:10px;letter-spacing:.1em;text-transform:uppercase;transition:opacity .25s,transform .25s}
+.status.show{opacity:1;transform:translate(-50%,0)}
+.loading{position:absolute;z-index:4;inset:0;display:grid;place-items:center;pointer-events:none;opacity:0;transition:opacity .3s}
+.loading.show{opacity:1}
+.loading span{width:30px;height:30px;border:1px solid rgba(255,255,255,.22);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(min-width:1100px){.hero{left:12vw}.description{max-width:360px}}
+@media(max-width:640px){.scene{min-height:520px}.topbar{padding:23px 22px}.topnote{display:none}.edition{font-size:9px}.hero{top:44%;left:24px;max-width:calc(100% - 48px);transform:translateY(-45%)}.eyebrow{margin-bottom:18px;font-size:9px}h1{font-size:clamp(55px,16vw,94px);margin-bottom:20px}.description{font-size:12px;max-width:285px}.side-index{right:23px;top:auto;bottom:150px;transform:none;gap:8px}.side-index button{font-size:9px}.side-index button:after{width:12px}.side-index button[aria-current="step"]:after{width:25px}.bottom{left:20px;right:20px;bottom:22px;grid-template-columns:1fr auto;gap:13px;align-items:center}.caption{font-size:9px;grid-column:1;grid-row:1}.controller{grid-column:1 / -1;grid-row:2;justify-self:stretch;justify-content:center;gap:12px;padding:7px}.play{width:42px;height:42px}.track{min-width:0;flex:1;justify-content:center;gap:4px}.track button{min-width:25px;padding:0 6px}.reset{flex-shrink:0}.counter{grid-column:2;grid-row:1}.beat{height:2px}}
+@media(max-height:600px) and (min-width:641px){.hero{top:46%}h1{font-size:clamp(50px,8vw,104px)}.eyebrow{margin-bottom:13px}.description{font-size:12px}.bottom{bottom:16px}.topbar{padding-top:20px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
 </style>
 </head>
 <body>
-<footer class="footer">
-  <div class="footer__stage" aria-hidden="true"><video class="footer__video" src="https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/4d01c727-d9c5-47c8-a778-35a451ffd39f.mp4" poster="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261014_121838_c97d0940-f430-4304-8573-4f47ee44f447.png" autoplay muted loop playsinline preload="auto"></video></div>
-  <p class="footer__wordmark" aria-hidden="true">Driftbar</p>
-  <div class="footer__fog" aria-hidden="true"></div>
-  <div class="footer__content">
-    <div class="brand">
-      <a class="brand__logo" href="#" aria-label="Driftbar home"><span class="brand__mark" aria-hidden="true"></span><span>Driftbar</span></a>
-      <h2 class="brand__title">The calm bar for macOS</h2>
-      <p class="brand__text">Driftbar gathers music, tasks, meetings, weather, search, focus timers, quick notes, and more handy widgets into one calm floating bar just above your Mac Dock.</p>
-      <a class="brand__cta" href="#"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c-.03-2.75 2.25-4.07 2.35-4.14-1.28-1.87-3.27-2.13-3.98-2.16-1.69-.17-3.3 1-4.16 1-.86 0-2.18-.97-3.59-.95-1.85.03-3.55 1.07-4.5 2.72-1.92 3.33-.49 8.25 1.38 10.95.91 1.32 2 2.8 3.43 2.75 1.38-.06 1.9-.89 3.56-.89 1.66 0 2.13.89 3.59.86 1.48-.03 2.42-1.34 3.33-2.67 1.05-1.53 1.48-3.02 1.5-3.1-.03-.01-2.88-1.1-2.91-4.37ZM14.31 4.46c.76-.92 1.27-2.2 1.13-3.46-1.09.04-2.41.73-3.19 1.64-.7.81-1.31 2.1-1.15 3.34 1.22.09 2.46-.62 3.21-1.52Z"/></svg>Get Driftbar today</a>
-      <p class="brand__copy">© 2026 Driftbar Inc. - Made in Lisbon.</p>
-      <p class="brand__by">Built with <span class="brand__heart" aria-label="love">💙</span> by <span class="brand__author"><span class="brand__avatar" aria-hidden="true"><svg viewBox="0 0 24 24"><rect width="24" height="24" fill="#e6e6e3"/><circle cx="12" cy="9.2" r="4.4" fill="#1b1b1b"/><path d="M3 25c0-6 4-9.4 9-9.4S21 19 21 25Z" fill="#1b1b1b"/></svg></span>Mira Okafor</span></p>
-      <ul class="brand__status" aria-label="Driftbar status">
-        <li class="chip"><span class="chip__dot" aria-hidden="true"></span>9,400 Macs in sync</li>
-        <li class="chip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></svg>v1.8 · Shipped today</li>
-        <li class="chip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.8-4.5 4.2 1.1 6-5.4-2.9-5.4 2.9 1.1-6L3.2 9.4l6.1-.8Z"/></svg>Rated 4.8 avg</li>
-      </ul>
-    </div>
-    <nav class="col col--menu" aria-label="Menu"><h3 class="col__title">Menu</h3><ul class="col__list"><li><a href="#">Tour</a></li><li><a href="#">Showcase</a></li><li><a href="#">Q&amp;A</a></li><li><a href="#">Licence</a></li><li><a href="#">Journal</a></li></ul></nav>
-    <nav class="col" aria-label="Essentials"><h3 class="col__title">Essentials</h3><ul class="col__list"><li><a href="#">Support</a></li><li><a href="#">Up next</a></li><li><a href="#">Privacy notice</a></li><li><a href="#">Usage guidelines</a></li><li><a href="#">Manage licences</a></li></ul></nav>
-    <nav class="col col--team" aria-label="From our team"><h3 class="col__title">From our team</h3><ul class="col__list"><li><a href="#">Clipnest.io</a></li><li><a href="#">Tallyo.io</a></li><li><a href="#">Pinwell.io</a></li><li><a href="#">Glyfo.co</a></li><li><a href="#">Shelfmark.app</a></li><li><a href="#">Wireloom.com</a></li><li><a href="#">Gridcraft.app</a></li></ul></nav>
+<main class="scene" id="scene" aria-label="LTX interactive fashion film">
+  <div class="media" id="media" aria-hidden="true">
+    <video class="active" data-clip="0" playsinline muted preload="auto" poster=""></video>
+    <video data-clip="1" playsinline muted preload="auto"></video>
+    <video data-clip="2" playsinline muted preload="auto"></video>
+    <video data-clip="3" playsinline muted preload="auto"></video>
   </div>
-</footer>
+  <div class="shade"></div><div class="grain"></div>
+  <header class="topbar">
+    <div class="brand" aria-label="LTX">LTX<sup>®</sup></div>
+    <div class="topnote">A new kind of seeing</div>
+    <div class="edition"><span class="pulse"></span> World model / 001</div>
+  </header>
+  <section class="hero" aria-labelledby="headline">
+    <div class="eyebrow" id="eyebrow">An imagined reality</div>
+    <h1 id="headline">The world <span>model.</span></h1>
+    <p class="description" id="description">A living canvas for stories not yet told. Move through the scene, find another perspective, and let the image become something new.</p>
+  </section>
+  <nav class="side-index" aria-label="Film scenes">
+    <button type="button" data-scene="0" aria-current="step"><span>01</span></button>
+    <button type="button" data-scene="1"><span>02</span></button>
+    <button type="button" data-scene="2"><span>03</span></button>
+    <button type="button" data-scene="3"><span>04</span></button>
+  </nav>
+  <div class="status" id="status" role="status" aria-live="polite">Loading scene</div>
+  <div class="loading" id="loading" aria-hidden="true"><span></span></div>
+  <footer class="bottom">
+    <div class="caption"><strong id="scene-name">Form in motion</strong><span id="scene-sub">Sequence 01 — 04</span></div>
+    <div class="controller" aria-label="Film controls">
+      <button class="play" id="play" type="button" aria-label="Play film" title="Play or pause">
+        <svg id="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <div class="track" aria-label="Choose scene">
+        <button type="button" data-scene="0" aria-pressed="true">01</button>
+        <button type="button" data-scene="1" aria-pressed="false">02</button>
+        <button type="button" data-scene="2" aria-pressed="false">03</button>
+        <button type="button" data-scene="3" aria-pressed="false">04</button>
+      </div>
+      <button class="reset" id="reset" type="button" aria-label="Restart current scene" title="Restart scene">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10a8 8 0 1 1 1 6M4 4v6h6"/></svg>
+      </button>
+    </div>
+    <div class="counter" aria-label="Current scene"><span class="current" id="counter-current">01</span><span class="dash"></span><span>04</span></div>
+  </footer>
+  <div class="beat" id="beat" aria-hidden="true"></div>
+</main>
+<script>
+(() => {
+  'use strict';
+  const base = 'https://pub-86dc5b5484314368ac5436a674b0d919.r2.dev/designs/';
+  const clips = [
+    {forward:'video-1.mp4',reverse:'video-1-reverse.mp4',name:'Form in motion',sub:'Sequence 01 — 04',eyebrow:'An imagined reality',description:'A living canvas for stories not yet told. Move through the scene, find another perspective, and let the image become something new.'},
+    {forward:'video-2.mp4',reverse:'video-2-reverse.mp4',name:'A different angle',sub:'Sequence 02 — 04',eyebrow:'Beyond the familiar',description:'Shape, texture, and movement meet in a world that feels almost within reach.'},
+    {forward:'video-3.mp4',reverse:'video-3-reverse.mp4',name:'The in-between',sub:'Sequence 03 — 04',eyebrow:'Made of possibility',description:'A fleeting gesture becomes a place to explore. The next frame is yours to discover.'},
+    {forward:'video-4.mp4',reverse:'video-4-reverse.mp4',name:'Worlds unfolding',sub:'Sequence 04 — 04',eyebrow:'Stay in the moment',description:'Every ending opens another door. Return to the beginning, or take the long way around.'}
+  ];
+  const videos = [...document.querySelectorAll('video[data-clip]')];
+  const sceneButtons = [...document.querySelectorAll('[data-scene]')];
+  const playButton = document.getElementById('play');
+  const playIcon = document.getElementById('play-icon');
+  const resetButton = document.getElementById('reset');
+  const status = document.getElementById('status');
+  const loading = document.getElementById('loading');
+  const sceneName = document.getElementById('scene-name');
+  const sceneSub = document.getElementById('scene-sub');
+  const eyebrow = document.getElementById('eyebrow');
+  const description = document.getElementById('description');
+  const counter = document.getElementById('counter-current');
+  const beat = document.getElementById('beat');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let current = 0, playing = false, direction = 1, transitioning = false, statusTimer = 0, generation = 0;
+  const loaded = new Set();
+
+  function showStatus(message) {
+    status.textContent = message;
+    status.classList.add('show');
+    window.clearTimeout(statusTimer);
+    statusTimer = window.setTimeout(() => status.classList.remove('show'), 1800);
+  }
+  function setPlaying(value) {
+    playing = value;
+    playButton.setAttribute('aria-label', value ? 'Pause film' : 'Play film');
+    playIcon.innerHTML = value ? '<path d="M7 5h4v14H7zM14 5h4v14h-4z"/>' : '<path d="M8 5v14l11-7z"/>';
+    if (!value) videos.forEach(v => { if (!v.paused) v.pause(); });
+  }
+  function configureVideo(video, index, reverse) {
+    const clip = clips[index];
+    const file = reverse ? clip.reverse : clip.forward;
+    const url = base + file;
+    if (video.dataset.src !== url) {
+      video.pause();
+      video.src = url;
+      video.dataset.src = url;
+      video.load();
+    }
+    video.muted = true;
+    video.playsInline = true;
+    return video;
+  }
+  function activeVideo() { return videos.find(v => v.classList.contains('active')) || videos[0]; }
+  function setMetadata(index) {
+    const item = clips[index];
+    sceneName.textContent = item.name;
+    sceneSub.textContent = item.sub;
+    eyebrow.textContent = item.eyebrow;
+    description.textContent = item.description;
+    counter.textContent = String(index + 1).padStart(2,'0');
+    sceneButtons.forEach(button => {
+      const selected = Number(button.dataset.scene) === index;
+      if (button.closest('.side-index')) {
+        if (selected) button.setAttribute('aria-current','step'); else button.removeAttribute('aria-current');
+      } else button.setAttribute('aria-pressed', String(selected));
+    });
+    beat.style.setProperty('--beat-x', ((index + .5) / clips.length * 100) + '%');
+    beat.style.setProperty('--beat-w', ((index + 1) / clips.length * 100) + '%');
+  }
+  async function safePlay(video, token) {
+    try {
+      const promise = video.play();
+      if (promise && typeof promise.then === 'function') await promise;
+      if (token !== generation) { video.pause(); return false; }
+      return true;
+    } catch (error) {
+      if (token === generation) {
+        setPlaying(false);
+        showStatus('Tap play to start the film');
+      }
+      return false;
+    }
+  }
+  async function goTo(index, options = {}) {
+    const next = (index + clips.length) % clips.length;
+    const token = ++generation;
+    transitioning = true;
+    current = next;
+    direction = options.reverse ? -1 : 1;
+    setMetadata(current);
+    loading.classList.add('show');
+    const oldVideo = activeVideo();
+    const nextVideo = videos.find(v => v !== oldVideo) || videos[0];
+    nextVideo.classList.remove('active');
+    configureVideo(nextVideo, current, direction < 0);
+    nextVideo.currentTime = 0;
+    nextVideo.oncanplay = null;
+    const ready = await new Promise(resolve => {
+      let finished = false;
+      const done = result => { if (finished) return; finished = true; clearTimeout(timeout); nextVideo.removeEventListener('canplay', onReady); nextVideo.removeEventListener('error', onError); resolve(result); };
+      const onReady = () => done(true);
+      const onError = () => done(false);
+      const timeout = setTimeout(() => done(false), 9000);
+      nextVideo.addEventListener('canplay', onReady, {once:true});
+      nextVideo.addEventListener('error', onError, {once:true});
+      if (nextVideo.readyState >= 3) done(true);
+      nextVideo.load();
+    });
+    if (token !== generation) return;
+    loading.classList.remove('show');
+    transitioning = false;
+    if (!ready) {
+      showStatus('Scene unavailable — check your connection');
+      oldVideo.classList.add('active');
+      return;
+    }
+    videos.forEach(v => { if (v !== nextVideo) { v.classList.remove('active'); v.pause(); } });
+    nextVideo.classList.add('active');
+    if (playing) {
+      const ok = await safePlay(nextVideo, token);
+      if (ok) showStatus(direction < 0 ? 'Rewinding scene' : 'Scene ready');
+    } else {
+      nextVideo.pause();
+      showStatus('Scene ' + String(current + 1).padStart(2,'0'));
+    }
+  }
+  playButton.addEventListener('click', async () => {
+    if (transitioning) return;
+    if (playing) { setPlaying(false); showStatus('Paused'); return; }
+    setPlaying(true);
+    const token = generation;
+    const video = activeVideo();
+    if (!video.dataset.src) configureVideo(video, current, direction < 0);
+    if (video.ended) video.currentTime = 0;
+    const ok = await safePlay(video, token);
+    if (ok) showStatus('Playing');
+  });
+  resetButton.addEventListener('click', async () => {
+    setPlaying(true);
+    await goTo(current, {reverse:false});
+    const video = activeVideo();
+    video.currentTime = 0;
+    await safePlay(video, generation);
+  });
+  sceneButtons.forEach(button => button.addEventListener('click', () => {
+    const next = Number(button.dataset.scene);
+    if (next === current && !transitioning) {
+      const video = activeVideo();
+      if (video.ended) { video.currentTime = 0; setPlaying(true); safePlay(video, generation); }
+      return;
+    }
+    setPlaying(true);
+    goTo(next, {reverse:false});
+  }));
+  videos.forEach(video => {
+    video.addEventListener('ended', () => {
+      if (video !== activeVideo() || !playing) return;
+      const next = current + 1;
+      if (next < clips.length) goTo(next, {reverse:false});
+      else { setPlaying(false); video.currentTime = 0; showStatus('End of film'); }
+    });
+    video.addEventListener('waiting', () => { if (video === activeVideo() && playing) loading.classList.add('show'); });
+    video.addEventListener('playing', () => { if (video === activeVideo()) loading.classList.remove('show'); });
+    video.addEventListener('error', () => { if (video === activeVideo()) { loading.classList.remove('show'); showStatus('Video could not load'); } });
+  });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden && playing) setPlaying(false);
+  });
+  // Start on a still frame; playback begins only after a user gesture.
+  configureVideo(videos[0], 0, false);
+  setMetadata(0);
+  videos[0].addEventListener('loadeddata', () => loaded.add(0), {once:true});
+  setPlaying(false);
+})();
+</script>
 </body>
 </html>

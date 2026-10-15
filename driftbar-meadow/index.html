@@ -107,6 +107,9 @@ h1 span{display:block;font-weight:800;font-style:italic;letter-spacing:-.105em}
         <button type="button" data-scene="2" aria-pressed="false">03</button>
         <button type="button" data-scene="3" aria-pressed="false">04</button>
       </div>
+      <button class="reset" id="reverse" type="button" aria-label="Play current scene in reverse" title="Toggle reverse playback" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14 4 9l5-5M4 9h9a6 6 0 0 1 0 12h-2"/></svg>
+      </button>
       <button class="reset" id="reset" type="button" aria-label="Restart current scene" title="Restart scene">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10a8 8 0 1 1 1 6M4 4v6h6"/></svg>
       </button>
@@ -130,6 +133,7 @@ h1 span{display:block;font-weight:800;font-style:italic;letter-spacing:-.105em}
   const playButton = document.getElementById('play');
   const playIcon = document.getElementById('play-icon');
   const resetButton = document.getElementById('reset');
+  const reverseButton = document.getElementById('reverse');
   const status = document.getElementById('status');
   const loading = document.getElementById('loading');
   const sceneName = document.getElementById('scene-name');
@@ -253,7 +257,17 @@ h1 span{display:block;font-weight:800;font-style:italic;letter-spacing:-.105em}
     const ok = await safePlay(video, token);
     if (ok) showStatus('Playing');
   });
+  reverseButton.addEventListener('click', async () => {
+    const wasPlaying = playing;
+    direction = direction === 1 ? -1 : 1;
+    reverseButton.setAttribute('aria-pressed', String(direction < 0));
+    reverseButton.setAttribute('aria-label', direction < 0 ? 'Play current scene forward' : 'Play current scene in reverse');
+    setPlaying(wasPlaying || true);
+    await goTo(current, {reverse:direction < 0});
+  });
   resetButton.addEventListener('click', async () => {
+    direction = 1;
+    reverseButton.setAttribute('aria-pressed', 'false');
     setPlaying(true);
     await goTo(current, {reverse:false});
     const video = activeVideo();
